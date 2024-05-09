@@ -1,9 +1,9 @@
 package com.zed.ticketsapi.controller.rest.offers;
 
-import com.zed.ticketsapi.constants.ErrorConstants;
 import com.zed.ticketsapi.constants.GenericConstants;
 import com.zed.ticketsapi.constants.PathConstants;
-import com.zed.ticketsapi.controller.rest.models.ApiError;
+import com.zed.ticketsapi.controller.rest.models.ApiErrorResponse;
+import com.zed.ticketsapi.controller.rest.models.ApiTicketsResponse;
 import com.zed.ticketsapi.controller.rest.models.offer.Offer;
 import com.zed.ticketsapi.controller.rest.models.offer.OfferResponse;
 import com.zed.ticketsapi.controller.rest.models.offer.OfferSimple;
@@ -15,7 +15,6 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -39,10 +38,10 @@ public interface OffersController {
             @ApiResponse(responseCode = "401",
                          description = "Invalid Authentification",
                          content = @Content(mediaType = "application/json",
-                                 schema = @Schema(implementation = ApiError.class))) })
+                                 schema = @Schema(implementation = ApiErrorResponse.class))) })
 
     @GetMapping(value = PathConstants.OFFERS_PATH, produces = { "application/json" })
-    ResponseEntity<String> getOffers();
+    ResponseEntity<ApiTicketsResponse> getOffers();
 
     @Operation(summary = "Update offer",
                description = "Update offer of ticket",
@@ -57,23 +56,23 @@ public interface OffersController {
             @ApiResponse(responseCode = "400",
                          description = "Invalid request",
                          content = @Content(mediaType = "application/json",
-                                 schema = @Schema(implementation = ApiError.class))),
+                                 schema = @Schema(implementation = ApiErrorResponse.class))),
 
             @ApiResponse(responseCode = "401",
                          description = "Invalid Authentification",
                          content = @Content(mediaType = "application/json",
-                                 schema = @Schema(implementation = ApiError.class))),
+                                 schema = @Schema(implementation = ApiErrorResponse.class))),
 
             @ApiResponse(responseCode = "404",
                          description = "Offer not found",
                          content = @Content(mediaType = "application/json",
-                                 schema = @Schema(implementation = ApiError.class))) })
+                                 schema = @Schema(implementation = ApiErrorResponse.class))) })
 
     @PutMapping(value = PathConstants.OFFER_ID_PATH,
                 produces = { "application/json" },
                 consumes = { "application/json" })
-    @PreAuthorize("hasRole('client-front-admin')")
-    ResponseEntity<OfferResponse> updateOffer(@NotBlank @PathVariable @Pattern(regexp = GenericConstants.PATTERN_UUID, message = ErrorConstants.UUID_PATTERN_ERROR) String offerId,
+    @PreAuthorize("hasRole('client-api-admin')")
+    ResponseEntity<ApiTicketsResponse> updateOffer(@NotBlank @PathVariable String offerId,
                                               @Valid @RequestBody Offer updatedOffer);
 
     @Operation(summary = "Create a new offer",
@@ -89,18 +88,18 @@ public interface OffersController {
             @ApiResponse(responseCode = "400",
                          description = "Invalid request",
                          content = @Content(mediaType = "application/json",
-                                 schema = @Schema(implementation = ApiError.class))),
+                                 schema = @Schema(implementation = ApiErrorResponse.class))),
 
             @ApiResponse(responseCode = "401",
                          description = "Invalid Authentification",
                          content = @Content(mediaType = "application/json",
-                                 schema = @Schema(implementation = ApiError.class))) })
+                                 schema = @Schema(implementation = ApiErrorResponse.class))) })
 
     @PostMapping(value =  PathConstants.OFFERS_PATH,
             produces = { "application/json" },
             consumes = { "application/json" })
-    @PreAuthorize("hasRole('client-front-admin')")
-            ResponseEntity<OfferResponse> createOffer(@Valid @RequestBody OfferSimple newOffer);
+    @PreAuthorize("hasRole('client-api-admin')")
+            ResponseEntity<ApiTicketsResponse> createOffer(@Valid @RequestBody OfferSimple newOffer);
 
     @Operation(summary = "Deletes a offer",
                description = "Delete a offer",
@@ -112,19 +111,19 @@ public interface OffersController {
             @ApiResponse(responseCode = "400",
                          description = "Invalid request",
                          content = @Content(mediaType = "application/json",
-                                 schema = @Schema(implementation = ApiError.class))),
+                                 schema = @Schema(implementation = ApiErrorResponse.class))),
 
             @ApiResponse(responseCode = "401",
                          description = "Invalid Authentification",
                          content = @Content(mediaType = "application/json",
-                                 schema = @Schema(implementation = ApiError.class))),
+                                 schema = @Schema(implementation = ApiErrorResponse.class))),
 
             @ApiResponse(responseCode = "404",
                          description = "Offer not found",
                          content = @Content(mediaType = "application/json",
-                                 schema = @Schema(implementation = ApiError.class))) })
+                                 schema = @Schema(implementation = ApiErrorResponse.class))) })
 
     @DeleteMapping(value = PathConstants.OFFER_ID_PATH)
-    @PreAuthorize("hasRole('client-front-admin')")
-    ResponseEntity<Void> deleteOffer(@NotBlank @PathVariable @Pattern(regexp = GenericConstants.PATTERN_UUID, message = ErrorConstants.UUID_PATTERN_ERROR) String offerId);
+    @PreAuthorize("hasRole('client-api-admin')")
+    ResponseEntity<ApiTicketsResponse> deleteOffer(@NotBlank @PathVariable String offerId);
 }
