@@ -1,7 +1,6 @@
 package com.zed.ticketsapi.controller.rest.offers.impl;
 
 import com.zed.ticketsapi.constants.GenericConstants;
-import com.zed.ticketsapi.constants.PathConstants;
 import com.zed.ticketsapi.controller.rest.models.ApiError;
 import com.zed.ticketsapi.controller.rest.models.ApiErrorResponse;
 import com.zed.ticketsapi.controller.rest.models.ApiErrorSimple;
@@ -13,14 +12,12 @@ import com.zed.ticketsapi.controller.rest.models.offer.OffersResponse;
 import com.zed.ticketsapi.controller.rest.offers.OffersController;
 import com.zed.ticketsapi.controller.utils.ErrorUtils;
 import com.zed.ticketsapi.services.offers.OffersServices;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
@@ -29,9 +26,7 @@ import java.util.UUID;
 @Slf4j
 @Validated
 @RestController
-@RequestMapping(PathConstants.CONTROLLER_V1_PATH)
 @Tag(name = GenericConstants.OFFER_TAG, description = GenericConstants.OFFER_DESCRIPTION)
-@SecurityRequirement(name = GenericConstants.BEARER)
 @RequiredArgsConstructor
 public class OffersControllerImpl implements OffersController {
 

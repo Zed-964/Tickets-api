@@ -13,6 +13,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.http.ResponseEntity;
@@ -33,12 +34,7 @@ public interface OffersController {
             @ApiResponse(responseCode = "200",
                          description = "successful operation",
                          content = @Content(mediaType = "application/json",
-                                 schema = @Schema(implementation = OffersResponse.class))),
-
-            @ApiResponse(responseCode = "401",
-                         description = "Invalid Authentification",
-                         content = @Content(mediaType = "application/json",
-                                 schema = @Schema(implementation = ApiErrorResponse.class))) })
+                                 schema = @Schema(implementation = OffersResponse.class))) })
 
     @GetMapping(value = PathConstants.OFFERS_PATH, produces = { "application/json" })
     ResponseEntity<ApiTicketsResponse> getOffers();
@@ -71,6 +67,7 @@ public interface OffersController {
     @PutMapping(value = PathConstants.OFFER_ID_PATH,
                 produces = { "application/json" },
                 consumes = { "application/json" })
+    @SecurityRequirement(name = GenericConstants.BEARER)
     @PreAuthorize("hasRole('client-api-admin')")
     ResponseEntity<ApiTicketsResponse> updateOffer(@NotBlank @PathVariable String offerId,
                                               @Valid @RequestBody Offer updatedOffer);
@@ -98,6 +95,7 @@ public interface OffersController {
     @PostMapping(value =  PathConstants.OFFERS_PATH,
             produces = { "application/json" },
             consumes = { "application/json" })
+    @SecurityRequirement(name = GenericConstants.BEARER)
     @PreAuthorize("hasRole('client-api-admin')")
             ResponseEntity<ApiTicketsResponse> createOffer(@Valid @RequestBody OfferSimple newOffer);
 
@@ -124,6 +122,7 @@ public interface OffersController {
                                  schema = @Schema(implementation = ApiErrorResponse.class))) })
 
     @DeleteMapping(value = PathConstants.OFFER_ID_PATH)
+    @SecurityRequirement(name = GenericConstants.BEARER)
     @PreAuthorize("hasRole('client-api-admin')")
     ResponseEntity<ApiTicketsResponse> deleteOffer(@NotBlank @PathVariable String offerId);
 }
