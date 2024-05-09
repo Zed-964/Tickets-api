@@ -1,6 +1,6 @@
 package com.zed.ticketsapi.constants;
 
-public class ErrorConstants {
+public class ErrorsConstants {
 
     public static final String UUID_PATTERN_ERROR = "Invalid pattern for uuid";
 
@@ -18,7 +18,14 @@ public class ErrorConstants {
 
     public static final String PRICE_EMPTY = "The price of the offer is not set";
 
-    private ErrorConstants() {
+    public static final String JWT_UNAUTHORIZED= "UNAUTHORIZED";
+
+    public static final String JWT_FORMAT_INCORRECT = "Incorrect format for the JWT ! ";
+
+    public static final String JWT_RESOURCE_ID_UNKNOWN = "Resource Id is unknown ! ";
+
+
+    private ErrorsConstants() {
 
     }
 }
