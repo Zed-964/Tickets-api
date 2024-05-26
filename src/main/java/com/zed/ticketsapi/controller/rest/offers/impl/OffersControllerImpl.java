@@ -1,14 +1,14 @@
 package com.zed.ticketsapi.controller.rest.offers.impl;
 
 import com.zed.ticketsapi.constants.GenericConstants;
-import com.zed.ticketsapi.controller.rest.models.ApiError;
-import com.zed.ticketsapi.controller.rest.models.ApiErrorResponse;
-import com.zed.ticketsapi.controller.rest.models.ApiErrorSimple;
+import com.zed.ticketsapi.controller.rest.models.errors.ApiError;
+import com.zed.ticketsapi.controller.rest.models.errors.ApiErrorResponse;
+import com.zed.ticketsapi.controller.rest.models.errors.ApiErrorSimple;
 import com.zed.ticketsapi.controller.rest.models.ApiTicketsResponse;
-import com.zed.ticketsapi.controller.rest.models.offer.Offer;
-import com.zed.ticketsapi.controller.rest.models.offer.OfferResponse;
-import com.zed.ticketsapi.controller.rest.models.offer.OfferSimple;
-import com.zed.ticketsapi.controller.rest.models.offer.OffersResponse;
+import com.zed.ticketsapi.controller.rest.models.offers.Offer;
+import com.zed.ticketsapi.controller.rest.models.offers.OfferResponse;
+import com.zed.ticketsapi.controller.rest.models.offers.OfferSimple;
+import com.zed.ticketsapi.controller.rest.models.offers.OffersResponse;
 import com.zed.ticketsapi.controller.rest.offers.OffersController;
 import com.zed.ticketsapi.controller.utils.ErrorUtils;
 import com.zed.ticketsapi.services.offers.OffersServices;
@@ -84,7 +84,7 @@ public class OffersControllerImpl implements OffersController {
         ApiTicketsResponse response;
 
         try {
-            response =offersServices.create(newOffer);
+            response = offersServices.create(newOffer);
         } catch (ApiError e) {
             return ErrorUtils.thrownApiError(e);
         }

@@ -1,18 +1,14 @@
-package com.zed.ticketsapi.controller.rest.models.offer;
+package com.zed.ticketsapi.controller.rest.models.errors;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.zed.ticketsapi.controller.rest.models.ApiTicketsResponse;
 import lombok.Builder;
-import lombok.Getter;
 
-import java.util.List;
-
-@Getter
 @Builder
-public class OffersResponse implements ApiTicketsResponse {
+public class ApiErrorResponse implements ApiTicketsResponse {
 
     @JsonProperty("data")
-    private List<Offer> data;
+    private ApiErrorSimple data;
 
     @Override
     public Object data() {

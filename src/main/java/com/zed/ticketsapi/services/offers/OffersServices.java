@@ -1,10 +1,10 @@
 package com.zed.ticketsapi.services.offers;
 
-import com.zed.ticketsapi.controller.rest.models.ApiError;
-import com.zed.ticketsapi.controller.rest.models.offer.Offer;
-import com.zed.ticketsapi.controller.rest.models.offer.OfferResponse;
-import com.zed.ticketsapi.controller.rest.models.offer.OfferSimple;
-import com.zed.ticketsapi.controller.rest.models.offer.OffersResponse;
+import com.zed.ticketsapi.controller.rest.models.errors.ApiError;
+import com.zed.ticketsapi.controller.rest.models.offers.Offer;
+import com.zed.ticketsapi.controller.rest.models.offers.OfferResponse;
+import com.zed.ticketsapi.controller.rest.models.offers.OfferSimple;
+import com.zed.ticketsapi.controller.rest.models.offers.OffersResponse;
 
 import java.util.UUID;
 

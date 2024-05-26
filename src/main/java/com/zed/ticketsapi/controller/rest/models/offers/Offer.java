@@ -1,4 +1,4 @@
-package com.zed.ticketsapi.controller.rest.models.offer;
+package com.zed.ticketsapi.controller.rest.models.offers;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.zed.ticketsapi.constants.ErrorsConstants;
@@ -7,9 +7,15 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.util.UUID;
+
 @Getter
 @Builder
-public class OfferSimple {
+public class Offer {
+
+    @JsonProperty("uuid")
+    @NotNull(message = ErrorsConstants.UUID_PATTERN_ERROR)
+    private UUID uuid;
 
     @JsonProperty("name")
     @NotBlank(message = ErrorsConstants.NAME_EMPTY)

@@ -1,7 +1,6 @@
 package com.zed.ticketsapi.dao.db.offers;
 
-import com.zed.ticketsapi.controller.rest.models.ApiError;
-import com.zed.ticketsapi.controller.rest.models.offer.Offer;
+import com.zed.ticketsapi.controller.rest.models.offers.Offer;
 import com.zed.ticketsapi.dao.db.exceptions.DaoException;
 
 import java.util.List;
@@ -16,5 +15,5 @@ public interface OffersDao {
 
     void updateOffer(Offer offer) throws DaoException;
 
-    void deleteOffer(UUID uuid) throws ApiError, DaoException;
+    void deleteOffer(UUID uuid) throws DaoException;
 }

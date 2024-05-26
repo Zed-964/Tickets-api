@@ -1,4 +1,4 @@
-package com.zed.ticketsapi.controller.rest.models;
+package com.zed.ticketsapi.controller.rest.models.errors;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.RequiredArgsConstructor;

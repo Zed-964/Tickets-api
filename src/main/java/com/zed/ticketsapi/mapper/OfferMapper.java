@@ -1,7 +1,7 @@
 package com.zed.ticketsapi.mapper;
 
 import com.zed.ticketsapi.constants.QueryDbConstants;
-import com.zed.ticketsapi.controller.rest.models.offer.Offer;
+import com.zed.ticketsapi.controller.rest.models.offers.Offer;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

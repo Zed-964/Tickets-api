@@ -1,4 +1,4 @@
-package com.zed.ticketsapi.controller.rest.models.offer;
+package com.zed.ticketsapi.controller.rest.models.offers;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.zed.ticketsapi.controller.rest.models.ApiTicketsResponse;

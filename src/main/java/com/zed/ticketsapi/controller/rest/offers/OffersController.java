@@ -2,12 +2,12 @@ package com.zed.ticketsapi.controller.rest.offers;
 
 import com.zed.ticketsapi.constants.GenericConstants;
 import com.zed.ticketsapi.constants.PathConstants;
-import com.zed.ticketsapi.controller.rest.models.ApiErrorResponse;
+import com.zed.ticketsapi.controller.rest.models.errors.ApiErrorResponse;
 import com.zed.ticketsapi.controller.rest.models.ApiTicketsResponse;
-import com.zed.ticketsapi.controller.rest.models.offer.Offer;
-import com.zed.ticketsapi.controller.rest.models.offer.OfferResponse;
-import com.zed.ticketsapi.controller.rest.models.offer.OfferSimple;
-import com.zed.ticketsapi.controller.rest.models.offer.OffersResponse;
+import com.zed.ticketsapi.controller.rest.models.offers.Offer;
+import com.zed.ticketsapi.controller.rest.models.offers.OfferResponse;
+import com.zed.ticketsapi.controller.rest.models.offers.OfferSimple;
+import com.zed.ticketsapi.controller.rest.models.offers.OffersResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -56,8 +56,11 @@ public interface OffersController {
 
             @ApiResponse(responseCode = "401",
                          description = "Invalid Authentification",
-                         content = @Content(mediaType = "application/json",
-                                 schema = @Schema(implementation = ApiErrorResponse.class))),
+                         content = @Content(mediaType = "application/json")),
+
+            @ApiResponse(responseCode = "403",
+                    description = "Invalid Right",
+                    content = @Content(mediaType = "application/json")),
 
             @ApiResponse(responseCode = "404",
                          description = "Offer not found",
@@ -68,7 +71,7 @@ public interface OffersController {
                 produces = { "application/json" },
                 consumes = { "application/json" })
     @SecurityRequirement(name = GenericConstants.BEARER)
-    @PreAuthorize("hasRole('client-api-admin')")
+    @PreAuthorize("hasRole('client-front-admin')")
     ResponseEntity<ApiTicketsResponse> updateOffer(@NotBlank @PathVariable String offerId,
                                               @Valid @RequestBody Offer updatedOffer);
 
@@ -89,14 +92,17 @@ public interface OffersController {
 
             @ApiResponse(responseCode = "401",
                          description = "Invalid Authentification",
-                         content = @Content(mediaType = "application/json",
-                                 schema = @Schema(implementation = ApiErrorResponse.class))) })
+                         content = @Content(mediaType = "application/json")),
+
+            @ApiResponse(responseCode = "403",
+                        description = "Invalid Right",
+                        content = @Content(mediaType = "application/json"))})
 
     @PostMapping(value =  PathConstants.OFFERS_PATH,
             produces = { "application/json" },
             consumes = { "application/json" })
     @SecurityRequirement(name = GenericConstants.BEARER)
-    @PreAuthorize("hasRole('client-api-admin')")
+    @PreAuthorize("hasRole('client-front-admin')")
             ResponseEntity<ApiTicketsResponse> createOffer(@Valid @RequestBody OfferSimple newOffer);
 
     @Operation(summary = "Deletes a offer",
@@ -113,8 +119,11 @@ public interface OffersController {
 
             @ApiResponse(responseCode = "401",
                          description = "Invalid Authentification",
-                         content = @Content(mediaType = "application/json",
-                                 schema = @Schema(implementation = ApiErrorResponse.class))),
+                         content = @Content(mediaType = "application/json")),
+
+            @ApiResponse(responseCode = "403",
+                    description = "Invalid Right",
+                    content = @Content(mediaType = "application/json")),
 
             @ApiResponse(responseCode = "404",
                          description = "Offer not found",
@@ -123,6 +132,6 @@ public interface OffersController {
 
     @DeleteMapping(value = PathConstants.OFFER_ID_PATH)
     @SecurityRequirement(name = GenericConstants.BEARER)
-    @PreAuthorize("hasRole('client-api-admin')")
+    @PreAuthorize("hasRole('client-front-admin')")
     ResponseEntity<ApiTicketsResponse> deleteOffer(@NotBlank @PathVariable String offerId);
 }

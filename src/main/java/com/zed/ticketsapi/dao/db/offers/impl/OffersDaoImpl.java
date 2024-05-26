@@ -2,7 +2,7 @@ package com.zed.ticketsapi.dao.db.offers.impl;
 
 import com.zed.ticketsapi.constants.GenericConstants;
 import com.zed.ticketsapi.constants.QueryDbConstants;
-import com.zed.ticketsapi.controller.rest.models.offer.Offer;
+import com.zed.ticketsapi.controller.rest.models.offers.Offer;
 import com.zed.ticketsapi.dao.db.exceptions.DaoException;
 import com.zed.ticketsapi.dao.db.offers.OffersDao;
 import com.zed.ticketsapi.mapper.OfferMapper;
@@ -48,7 +48,7 @@ public class OffersDaoImpl implements OffersDao {
         Offer result;
 
         String query = QueryDbConstants.SELECT + QueryDbConstants.FROM + QueryDbConstants.TABLE_OFFER +
-                QueryDbConstants.WHERE + QueryDbConstants.OFFER_ID_EQUAL + QueryDbConstants.VARIABLE;
+                QueryDbConstants.WHERE + QueryDbConstants.OFFER_ID_EQUAL + QueryDbConstants.QUESTION_MARK;
 
         try {
             result = jdbcTemplate.queryForObject(query, new OfferMapper(), uuid);
@@ -70,7 +70,7 @@ public class OffersDaoImpl implements OffersDao {
         int result;
 
         String query = QueryDbConstants.INSERT_INTO + QueryDbConstants.TABLE_OFFER + QueryDbConstants.FORMAT_OFFER
-                + QueryDbConstants.VALUES_OFFER;
+                + QueryDbConstants.VALUES_5;
 
         try {
             result = jdbcTemplate.update(query,
@@ -93,11 +93,11 @@ public class OffersDaoImpl implements OffersDao {
         int result;
 
         String query = QueryDbConstants.UPDATE + QueryDbConstants.TABLE_OFFER + QueryDbConstants.SET +
-                QueryDbConstants.OFFER_NAME_EQUAL + QueryDbConstants.VARIABLE + QueryDbConstants.NEXT_VARIABLE +
-                QueryDbConstants.OFFER_DESCRIPTION_EQUAL + QueryDbConstants.VARIABLE + QueryDbConstants.NEXT_VARIABLE +
-                QueryDbConstants.OFFER_NUMBER_TICKETS_EQUAL + QueryDbConstants.VARIABLE + QueryDbConstants.NEXT_VARIABLE +
-                QueryDbConstants.OFFER_PRICE_EQUAL + QueryDbConstants.VARIABLE +
-                QueryDbConstants.WHERE + QueryDbConstants.OFFER_ID_EQUAL + QueryDbConstants.VARIABLE;
+                QueryDbConstants.OFFER_NAME_EQUAL + QueryDbConstants.QUESTION_MARK + QueryDbConstants.COMA +
+                QueryDbConstants.OFFER_DESCRIPTION_EQUAL + QueryDbConstants.QUESTION_MARK + QueryDbConstants.COMA +
+                QueryDbConstants.OFFER_NUMBER_TICKETS_EQUAL + QueryDbConstants.QUESTION_MARK + QueryDbConstants.COMA +
+                QueryDbConstants.OFFER_PRICE_EQUAL + QueryDbConstants.QUESTION_MARK +
+                QueryDbConstants.WHERE + QueryDbConstants.OFFER_ID_EQUAL + QueryDbConstants.QUESTION_MARK;
 
         try {
             result = jdbcTemplate.update(query,
@@ -120,7 +120,7 @@ public class OffersDaoImpl implements OffersDao {
         int result;
 
         String query = QueryDbConstants.DELETE + QueryDbConstants.FROM + QueryDbConstants.TABLE_OFFER +
-                QueryDbConstants.WHERE + QueryDbConstants.OFFER_ID_EQUAL + QueryDbConstants.VARIABLE;
+                QueryDbConstants.WHERE + QueryDbConstants.OFFER_ID_EQUAL + QueryDbConstants.QUESTION_MARK;
         try {
             result = jdbcTemplate.update(query, uuid);
         } catch (Exception e) {

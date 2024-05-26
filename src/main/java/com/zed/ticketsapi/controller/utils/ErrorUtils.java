@@ -1,8 +1,8 @@
 package com.zed.ticketsapi.controller.utils;
 
-import com.zed.ticketsapi.controller.rest.models.ApiError;
-import com.zed.ticketsapi.controller.rest.models.ApiErrorResponse;
-import com.zed.ticketsapi.controller.rest.models.ApiErrorSimple;
+import com.zed.ticketsapi.controller.rest.models.errors.ApiError;
+import com.zed.ticketsapi.controller.rest.models.errors.ApiErrorResponse;
+import com.zed.ticketsapi.controller.rest.models.errors.ApiErrorSimple;
 import com.zed.ticketsapi.controller.rest.models.ApiTicketsResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

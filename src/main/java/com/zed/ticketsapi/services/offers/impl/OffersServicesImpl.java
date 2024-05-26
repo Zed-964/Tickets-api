@@ -1,10 +1,10 @@
 package com.zed.ticketsapi.services.offers.impl;
 
-import com.zed.ticketsapi.controller.rest.models.ApiError;
-import com.zed.ticketsapi.controller.rest.models.offer.Offer;
-import com.zed.ticketsapi.controller.rest.models.offer.OfferResponse;
-import com.zed.ticketsapi.controller.rest.models.offer.OfferSimple;
-import com.zed.ticketsapi.controller.rest.models.offer.OffersResponse;
+import com.zed.ticketsapi.controller.rest.models.errors.ApiError;
+import com.zed.ticketsapi.controller.rest.models.offers.Offer;
+import com.zed.ticketsapi.controller.rest.models.offers.OfferResponse;
+import com.zed.ticketsapi.controller.rest.models.offers.OfferSimple;
+import com.zed.ticketsapi.controller.rest.models.offers.OffersResponse;
 import com.zed.ticketsapi.dao.db.exceptions.DaoException;
 import com.zed.ticketsapi.dao.db.offers.OffersDao;
 import com.zed.ticketsapi.services.offers.OffersServices;
@@ -110,6 +110,5 @@ public class OffersServicesImpl implements OffersServices {
             log.error("Error occurred when delete a offer. Error : {}, code : {}", e.getMessage(), e.getCode());
             throw ApiError.builder().message("An error occurred when delete a offer.").code(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
-
     }
 }
