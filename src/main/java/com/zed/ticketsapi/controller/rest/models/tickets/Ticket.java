@@ -1,22 +1,22 @@
-package com.zed.ticketsapi.controller.rest.models.ticket;
+package com.zed.ticketsapi.controller.rest.models.tickets;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.zed.ticketsapi.constants.ErrorsConstants;
-import com.zed.ticketsapi.constants.GenericConstants;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import org.springframework.format.annotation.DateTimeFormat;
+import java.time.LocalDate;
+import java.util.UUID;
 
 @Getter
 @Builder
 public class Ticket {
 
     @JsonProperty("uuid")
-    @Pattern(regexp = GenericConstants.PATTERN_UUID)
-    @NotBlank(message = ErrorsConstants.UUID_PATTERN_ERROR)
-    private String uuid;
+    @NotNull(message = ErrorsConstants.UUID_PATTERN_ERROR)
+    private UUID uuid;
 
     @JsonProperty("firstname")
     @NotBlank(message = ErrorsConstants.FIRSTNAME_EMPTY)
@@ -29,10 +29,9 @@ public class Ticket {
     @JsonProperty("date")
     @DateTimeFormat
     @NotBlank(message = ErrorsConstants.UUID_PATTERN_ERROR)
-    private String date;
+    private LocalDate date;
 
     @JsonProperty("userId")
-    @Pattern(regexp = GenericConstants.PATTERN_UUID)
-    @NotBlank(message = ErrorsConstants.UUID_PATTERN_ERROR)
-    private String userId;
+    @NotNull(message = ErrorsConstants.UUID_PATTERN_ERROR)
+    private UUID userId;
 }
