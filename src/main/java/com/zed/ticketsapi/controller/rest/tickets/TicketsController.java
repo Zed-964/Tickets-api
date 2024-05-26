@@ -2,10 +2,11 @@ package com.zed.ticketsapi.controller.rest.tickets;
 
 import com.zed.ticketsapi.constants.GenericConstants;
 import com.zed.ticketsapi.constants.PathConstants;
-import com.zed.ticketsapi.controller.rest.models.ApiError;
-import com.zed.ticketsapi.controller.rest.models.ticket.Ticket;
-import com.zed.ticketsapi.controller.rest.models.ticket.TicketSimple;
-import com.zed.ticketsapi.controller.rest.models.ticket.TicketsResponse;
+import com.zed.ticketsapi.controller.rest.models.ApiTicketsResponse;
+import com.zed.ticketsapi.controller.rest.models.errors.ApiErrorResponse;
+import com.zed.ticketsapi.controller.rest.models.tickets.Ticket;
+import com.zed.ticketsapi.controller.rest.models.tickets.TicketsPayment;
+import com.zed.ticketsapi.controller.rest.models.tickets.TicketsResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -16,8 +17,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
-import java.util.List;
 
 public interface TicketsController {
 
@@ -33,12 +32,11 @@ public interface TicketsController {
 
             @ApiResponse(responseCode = "401",
                          description = "Invalid Authentification",
-                         content = @Content(mediaType = "application/json",
-                                 schema = @Schema(implementation = ApiError.class))) })
+                         content = @Content(mediaType = "application/json")) })
 
     @GetMapping(value = PathConstants.TICKETS_ME_PATH,
             produces = { "application/json" })
-    ResponseEntity<TicketsResponse> getTicketsFromUser();
+    ResponseEntity<ApiTicketsResponse> getTicketsFromUser();
 
 
     @Operation(summary = "Pay a new ticket",
@@ -54,15 +52,14 @@ public interface TicketsController {
             @ApiResponse(responseCode = "400",
                          description = "Invalid request",
                          content = @Content(mediaType = "application/json",
-                                 schema = @Schema(implementation = ApiError.class))),
+                                 schema = @Schema(implementation = ApiErrorResponse.class))),
 
             @ApiResponse(responseCode = "401",
                          description = "Invalid Authentification",
-                         content = @Content(mediaType = "application/json",
-                                 schema = @Schema(implementation = ApiError.class))) })
+                         content = @Content(mediaType = "application/json")) })
 
     @PostMapping(value = PathConstants.TICKETS_PAYMENT_PATH,
             produces = { "application/json" },
             consumes = { "application/json" })
-    ResponseEntity<Ticket> postPaymentTicket(@Valid @RequestBody List<TicketSimple> newTicket);
+    ResponseEntity<ApiTicketsResponse> postPaymentTicket(@Valid @RequestBody TicketsPayment ticketPayment);
 }

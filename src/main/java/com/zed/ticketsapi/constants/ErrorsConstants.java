@@ -4,8 +4,6 @@ public class ErrorsConstants {
 
     public static final String UUID_PATTERN_ERROR = "Invalid pattern for uuid";
 
-    public static final String DATE_PATTERN_ERROR = "Invalid pattern for date";
-
     public static final String NAME_EMPTY = "The name of the offer is empty";
 
     public static final String FIRSTNAME_EMPTY = "The firstname of the ticket is empty";

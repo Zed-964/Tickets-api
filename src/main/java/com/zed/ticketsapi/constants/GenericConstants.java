@@ -12,9 +12,7 @@ public class GenericConstants {
 
     public static final String TICKET_DESCRIPTION = "Everything about ticket";
 
-    public static final String PATTERN_UUID = "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}";
-
-    public static final String RESOURCE_ID = "tickets-api";
+    public static final String RESOURCE_ID = "tickets-front";
 
     public static final String RESOURCE_ACCESS = "resource_access";
 
