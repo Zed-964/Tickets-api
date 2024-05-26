@@ -1,4 +1,4 @@
-package com.zed.ticketsapi.controller.rest.models.ticket;
+package com.zed.ticketsapi.controller.rest.models.tickets;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.zed.ticketsapi.constants.ErrorsConstants;
