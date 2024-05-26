@@ -1,8 +1,8 @@
-package com.zed.ticketsapi.services;
+package com.zed.ticketsapi.services.jwt;
 
 import com.zed.ticketsapi.constants.ErrorsConstants;
 import com.zed.ticketsapi.constants.GenericConstants;
-import com.zed.ticketsapi.controller.rest.models.ApiError;
+import com.zed.ticketsapi.controller.rest.models.errors.ApiError;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.http.HttpStatus;
