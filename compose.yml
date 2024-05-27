@@ -1,0 +1,34 @@
+version: "3.0"
+services:
+  postgres-tc:
+    container_name: postgres-sql-tickets
+    image: postgres:16
+    env_file:
+      - .env
+    environment:
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    ports:
+      - "5430:5432"
+    networks:
+      - tickets
+    restart: unless-stopped
+
+  pgadmin:
+    container_name: pgadmin-tickets
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: louail.enzo@orange.fr
+      PGADMIN_DEFAULT_PASSWORD: admin-tc
+    volumes:
+      - ./pgadmin:/root/.pgadmin
+    ports:
+      - "5055:80"
+    networks:
+      - tickets
+    restart: unless-stopped
+
+networks:
+  tickets:
+    driver: bridge

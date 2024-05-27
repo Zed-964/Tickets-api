@@ -36,8 +36,8 @@ public class OffersDaoImpl implements OffersDao {
         }
 
         if (results.isEmpty()) {
-            log.error("None of the offer is found !");
-            throw new DaoException("None of the offer has found", HttpStatus.NOT_FOUND);
+            log.error("No offers has been found !");
+            throw new DaoException("None of the offers has been found", HttpStatus.NOT_FOUND);
         }
 
         return results;

@@ -1,4 +1,7 @@
 spring:
+  config:
+    import: classpath:secret.properties
+
   servlet:
     multipart:
       max-file-size: 100MB
@@ -7,13 +10,13 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8081/realms/jo-tickets-distribution
+          issuer-uri: https://${URI_KEYCLOAK}/realms/jo-tickets-distribution
           jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/tickets-db
-    username:
-    password:
+    url: jdbc:postgresql://${URI_DB}/${DB_NAME}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
 
   jpa:

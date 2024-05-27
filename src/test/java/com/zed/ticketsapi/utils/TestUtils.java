@@ -255,7 +255,7 @@ public class TestUtils {
 
     public static ApiError createApiErrorForGetALlOffersNotFound() {
         return ApiError.builder()
-                .message("None of the offer has found")
+                .message("None of the offers has been found")
                 .code(HttpStatus.NOT_FOUND)
                 .build();
     }
@@ -336,7 +336,7 @@ public class TestUtils {
     public static JwtKeycloak getTokenKeycloak() {
         RestTemplate restTemplate = new RestTemplate();
 
-        String url = "http://localhost:8081/realms/jo-tickets-distribution/protocol/openid-connect/token";
+        String url = "https://localhost:8081/realms/jo-tickets-distribution/protocol/openid-connect/token";
 
         UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(url);
 

@@ -124,7 +124,7 @@ class OffersServicesTest {
     @Test
     void getAllOfferWithErrorNotFound() throws DaoException {
         Mockito.when(offersDao.getAllOffer())
-                .thenThrow(new DaoException("None of the offer has found", HttpStatus.NOT_FOUND));
+                .thenThrow(new DaoException("None of the offers has been found", HttpStatus.NOT_FOUND));
 
         ApiError error = Assertions.assertThrows(ApiError.class, () -> offersServices.allOffers());
 
