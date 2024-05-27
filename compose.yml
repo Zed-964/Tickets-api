@@ -1,4 +1,4 @@
-version: "3.0"
+version: "3.8"
 services:
   postgres-tc:
     container_name: postgres-sql-tickets
@@ -14,6 +14,21 @@ services:
     networks:
       - tickets
     restart: unless-stopped
+
+  app:
+    image: openjdk:21
+    build:
+      context: .
+    networks:
+      - tickets
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres-tc
+    volumes:
+      - .:/app
+    working_dir: /app
+    entrypoint: [ "sh", "-c", "java -jar build/libs/tickets-api-1.0.0.jar" ]
 
   pgadmin:
     container_name: pgadmin-tickets

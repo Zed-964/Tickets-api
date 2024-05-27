@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'com.zed'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0'
 
 java {
 	sourceCompatibility = '21'
@@ -54,4 +54,17 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+jar {
+	manifest {
+		attributes(
+				'Main-Class': 'com.zed.ticketsapi.TicketsApiApplication'
+		)
+	}
+}
+
+bootJar {
+	enabled = true
+	mainClass.set('com.zed.ticketsapi.TicketsApiApplication')
 }
