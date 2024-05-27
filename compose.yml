@@ -17,6 +17,7 @@ services:
 
   app:
     image: openjdk:21
+    container_name: tickets-api
     build:
       context: .
     networks:

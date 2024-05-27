@@ -4,7 +4,6 @@ import com.zed.ticketsapi.constants.GenericConstants;
 import com.zed.ticketsapi.constants.PathConstants;
 import com.zed.ticketsapi.controller.rest.models.ApiTicketsResponse;
 import com.zed.ticketsapi.controller.rest.models.errors.ApiErrorResponse;
-import com.zed.ticketsapi.controller.rest.models.tickets.Ticket;
 import com.zed.ticketsapi.controller.rest.models.tickets.TicketsPayment;
 import com.zed.ticketsapi.controller.rest.models.tickets.TicketsResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -47,7 +46,7 @@ public interface TicketsController {
             @ApiResponse(responseCode = "201",
                          description = "Successful operation",
                          content = @Content(mediaType = "application/json",
-                                 schema = @Schema(implementation = Ticket.class))),
+                                 schema = @Schema(implementation = TicketsResponse.class))),
 
             @ApiResponse(responseCode = "400",
                          description = "Invalid request",
