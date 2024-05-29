@@ -232,6 +232,27 @@ public class TestUtils {
                 """;
     }
 
+    public static String createWrongFormatTicketPaymentJson() {
+        return """
+                {
+                  "card": {
+                    "number": "4973559924144258",
+                    "holderName": "JOHN DOE",
+                    "expirationDate": "01/23",
+                    "securityCode": "696"
+                  },
+                  "mount": "99.99",
+                  "status": "INITIALIZE",
+                  "tickets": [
+                    {
+                      "firstname": "",
+                      "lastname": ""
+                    }
+                  ]
+                }
+                """;
+    }
+
     public static ApiError createApiErrorForCreateOffer() {
         return ApiError.builder()
                 .message("An error occurred when create new offer.")

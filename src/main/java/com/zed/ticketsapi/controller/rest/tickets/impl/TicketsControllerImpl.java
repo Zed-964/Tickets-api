@@ -3,6 +3,7 @@ package com.zed.ticketsapi.controller.rest.tickets.impl;
 import com.zed.ticketsapi.constants.GenericConstants;
 import com.zed.ticketsapi.controller.rest.models.ApiTicketsResponse;
 import com.zed.ticketsapi.controller.rest.models.errors.ApiError;
+import com.zed.ticketsapi.controller.rest.models.tickets.TicketSimple;
 import com.zed.ticketsapi.controller.rest.models.tickets.TicketsPayment;
 import com.zed.ticketsapi.controller.rest.models.tickets.TicketsResponse;
 import com.zed.ticketsapi.controller.rest.tickets.TicketsController;
@@ -42,6 +43,12 @@ public class TicketsControllerImpl implements TicketsController {
     @Override
     public ResponseEntity<ApiTicketsResponse> postPaymentTicket(TicketsPayment ticketPayment) {
         ApiTicketsResponse response;
+
+        for (TicketSimple ticket : ticketPayment.getTickets()) {
+            if (ticket.getFirstname().isEmpty() || ticket.getLastname().isEmpty()) {
+                return ErrorUtils.thrownFormatTicketInvalid();
+            }
+        }
 
         try {
             response = ticketsServices.payment(ticketPayment);

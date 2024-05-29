@@ -30,4 +30,15 @@ public class ErrorUtils {
 
         return new ResponseEntity<>(errorResponse, e.getCode());
     }
+
+    public static ResponseEntity<ApiTicketsResponse> thrownFormatTicketInvalid() {
+        ApiErrorResponse errorResponse;
+        ApiError e;
+
+        log.error("Format of the ticket is invalid");
+        e = ApiError.builder().message("Format of the ticket is invalid").code(HttpStatus.BAD_REQUEST).build();
+        errorResponse = ApiErrorResponse.builder().data(new ApiErrorSimple(e)).build();
+
+        return new ResponseEntity<>(errorResponse, e.getCode());
+    }
 }

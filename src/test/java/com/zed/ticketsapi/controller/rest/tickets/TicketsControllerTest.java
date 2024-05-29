@@ -2,6 +2,7 @@ package com.zed.ticketsapi.controller.rest.tickets;
 
 import com.zed.ticketsapi.controller.rest.models.JwtKeycloak;
 import com.zed.ticketsapi.controller.rest.models.errors.ApiError;
+import com.zed.ticketsapi.controller.rest.models.tickets.TicketsPayment;
 import com.zed.ticketsapi.controller.rest.models.tickets.TicketsResponse;
 import com.zed.ticketsapi.services.tickets.TicketsServices;
 import com.zed.ticketsapi.utils.TestUtils;
@@ -83,6 +84,17 @@ class TicketsControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isCreated()).andReturn();
 
         JSONAssert.assertEquals(TestUtils.createTicketsResponseJson(), obtained.getResponse().getContentAsString(), JSONCompareMode.LENIENT);
+    }
+
+    @Test
+    void postMyTicketsWithError400() throws Exception {
+        String ticketsPayment = TestUtils.createWrongFormatTicketPaymentJson();
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/tickets/payment")
+                        .header("Authorization", jwt.getToken_type() + " " + jwt.getAccess_token())
+                        .content(ticketsPayment)
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
 
     @Test

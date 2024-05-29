@@ -16,8 +16,8 @@ public class TicketsPayment {
     @JsonProperty("card")
     private final Card card;
 
-    @JsonProperty("mount")
-    private final double mount;
+    @JsonProperty("amount")
+    private final double amount;
 
     @JsonProperty("status")
     private String status;
